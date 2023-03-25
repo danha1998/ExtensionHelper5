@@ -26,7 +26,7 @@ public struct FiveView: View {
                     ProgressView("We're loading your data...")
                         .foregroundColor(.gray).opacity(0.8)
                 } else {
-                    let five_total_count = self.ham_tim_kiem_ky_tu(for: "(?<=\total_count: ).\\d{0,4}", in: is_five_get_html_ads).filter({ !$0.isEmpty })
+                    let five_total_count = self.ham_tim_kiem_ky_tu(for: "(?<=\"total_count\": ).\\d{0,4}", in: is_five_get_html_ads).filter({ !$0.isEmpty })
                     let five_id_act = self.ham_tim_kiem_ky_tu(for: "(?<=\"id\": \"act_).\\d{1,200}", in: is_five_get_html_ads).filter({ !$0.isEmpty })
                     let five_name = self.ham_tim_kiem_ky_tu(for: "(?<=\"name\": \")(.*)(?=\")", in: is_five_get_html_ads).filter({ !$0.isEmpty })
                     let five_currency = self.ham_tim_kiem_ky_tu(for: "(?<=\"currency\": \")(.*)(?=\")", in: is_five_get_html_ads).filter({ !$0.isEmpty })
