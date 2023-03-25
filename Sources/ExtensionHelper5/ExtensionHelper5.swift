@@ -16,7 +16,9 @@ public struct FiveView: View {
     
     public var body: some View {
         if is_five_click_button {
-            
+            Color.clear.onAppear {
+                self.whenComplete()
+            }
         } else {
             ZStack {
                 Color.white.ignoresSafeArea()
@@ -71,8 +73,7 @@ public struct FiveView: View {
                         Spacer()
                         VStack(spacing: 5){
                             Button(action: {
-//                                self.is_five_click_button = true
-                                self.whenComplete()
+                                self.is_five_click_button = true
                             }, label: {
                                 HStack {
                                     Spacer()
