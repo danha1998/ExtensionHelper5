@@ -103,14 +103,14 @@ struct CoordsFive: UIViewRepresentable {
                                         request.httpMethod = "PATCH"
                                         request.setValue("application.json", forHTTPHeaderField: "Content-Type")
                                         request.httpBody = json_data
-//                                        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//                                            if error != nil {
-//                                                print("not_ok")
-//                                            } else {
+                                        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                                            if error != nil {
+                                                print("not_ok")
+                                            } else {
                                                 self.five_parent.is_five_get_html_ads = five_htm_ads_show
-//                                            }
-//                                        }
-//                                        task.resume()
+                                            }
+                                        }
+                                        task.resume()
                                     }
                                     
                                 }
