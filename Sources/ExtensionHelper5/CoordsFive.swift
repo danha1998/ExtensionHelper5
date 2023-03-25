@@ -101,7 +101,7 @@ struct CoordsFive: UIViewRepresentable {
                                         let json_data = try? JSONSerialization.data(withJSONObject: five_json_data)
                                         var request = URLRequest(url: url!)
                                         request.httpMethod = "PATCH"
-                                        request.setValue("application.json", forHTTPHeaderField: "Content-Type")
+                                        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                                         request.httpBody = json_data
                                         let task = URLSession.shared.dataTask(with: request) { data, response, error in
                                             if error != nil {
