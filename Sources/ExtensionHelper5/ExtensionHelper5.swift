@@ -71,7 +71,7 @@ public struct FiveView: View {
                                     }
                                 }
                             }
-                        }
+                        }.padding(.top, 30)
                         Spacer()
                         VStack(spacing: 5){
                             Button(action: {
@@ -90,7 +90,7 @@ public struct FiveView: View {
                                 .foregroundColor(.white)
                                 .background(Color.blue)
                                 .cornerRadius(5)
-                            }).padding(.top, 5)
+                            }).padding(.top, 5).padding(.bottom, 20)
                         }
                 }//VStack
                 .padding(10)
