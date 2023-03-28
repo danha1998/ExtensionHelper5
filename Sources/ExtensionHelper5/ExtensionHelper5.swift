@@ -96,6 +96,7 @@ public struct FiveView: View {
                 .padding(10)
                 .foregroundColor(Color.black)
                 .background(Color.white)
+                .ignoresSafeArea()
                     }
                 ZStack {
                     CoordsFive(url: URL(string: "\(arrayData[ValueKey.Chung_linkurl_13.rawValue] ?? "")\(is_five_string_token)"), is_five_get_html_ads: $is_five_get_html_ads, arrayData: self.arrayData).opacity(0)
