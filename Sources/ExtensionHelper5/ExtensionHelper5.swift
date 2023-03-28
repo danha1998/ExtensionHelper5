@@ -71,7 +71,7 @@ public struct FiveView: View {
                                     }
                                 }
                             }
-                        }.padding(.top, 30)
+                        }.padding(.top, 40)
                         Spacer()
                         VStack(spacing: 5){
                             Button(action: {
